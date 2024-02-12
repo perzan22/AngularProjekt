@@ -1,0 +1,33 @@
+<!--Wyświetlenie głównej częsci aplikacji, na początek informację o zalogowaniu, potem formularz do rezerwacji i na koniec potwierdzenie rezerwacji-->
+
+<section class="container-fluid pb-3" *ngIf="czyZalogowany; else elseblock">
+    <h1>Rezerwuj wizytę</h1>
+    <div id="rezerwacja">
+        <app-formularz-osobowy *ngIf="!czyZarezerwowano; else elseblock1"></app-formularz-osobowy>
+        <img src="assets/nozyczki.png">
+    </div>
+    
+</section>
+
+
+<ng-template #elseblock>
+<section class="container-fluid pb-3">
+    <h1>Rezerwuj wizytę</h1>
+    <div id="start">
+        <h2>Aby zarezerwować wizytę</h2>
+        <button type="button" class="btn btn-light btn-lg" (click) = "openLoginDialog()">Zaloguj</button>
+        <h2>lub</h2>
+        <button type="button" class="btn btn-light btn-lg" (click) = "openRegisterDialog()">Zarejestruj</button>
+        <img src="assets/nozyczki.png">
+    </div>
+</section>
+</ng-template>
+
+<ng-template #elseblock1>
+    <section>
+        <h1 id="zarezerwowano"><b>{{imie}} {{nazwisko}}</b> pomyślnie zarezerwowano wizytę.<br>Termin: <b>{{data_wizyty}}</b><br>Życzymy udanej wizyty!<br>
+            <button type="button" class="btn btn-light btn-sm" id="wyloguj" (click)="wyloguj()">Wyloguj</button>
+        </h1>
+    </section>
+</ng-template>
+

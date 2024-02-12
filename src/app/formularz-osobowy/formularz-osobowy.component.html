@@ -1,0 +1,45 @@
+<!--Formularz dzięki którermu użytkownik może zarezerwować wizytę, wyświetla się po zalogowaniu-->
+
+<section>
+<h2 id="label-witaj">Witaj <b>{{imie}} </b> <b>{{nazwisko}}</b><br>Wybierz datę wizyty<br>
+    <button type="button" class="btn btn-light btn-sm" id="wyloguj" (click)="wyloguj()">Wyloguj</button>
+</h2>
+
+<form id="termin">
+    
+    <div class="mb-2 mt-2">
+        <label for="data" class="form-label">Data:</label>
+        <input type="date"  id="data" class="form-control" name="data" min={{setMinDate()}} [(ngModel)]="selectedDate" (change) = "generateHours()">
+    </div>
+    <div class="mb-3">
+        <label for="godzina" class="form-label">Godzina:</label>
+        <select class="form-select" id="godzina" name="godzina" [(ngModel)]="selectedHour">
+            <option disabled selected value="">Wybierz godzinę</option>
+            <option *ngFor="let hour of hours" [value]="hour" >{{ hour }}</option>
+        </select>
+    </div>
+</form>
+
+<form id="rodzaj_wizyty">
+    <div class="mb-2 mt-2">
+        <label for="rodzaj" class="form-label">Co robimy?</label>
+        <select class="form-select" id="rodzaj" name="rodzaj" (change) = "obliczCene()" [(ngModel)] = "wybranaWizyta">
+            <option disabled selected value="">Wybierz rodzaj wizyty</option>
+            <option *ngFor="let rodzaj of rodzajeWizyt" [value]="rodzaj">{{ rodzaj }}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="barber" class="form-label">Wybierz barbera:</label>
+        <select class="form-select" id="barber" name="barber" (change) = "obliczCene()" [(ngModel)] = "wybranyBarber">
+            <option disabled selected value="">Wybierz barbera</option>
+            <option *ngFor="let barberWybrany of barbers" [value]="barberWybrany">{{ barberWybrany }}</option>
+        </select>
+    </div>
+    <p *ngIf="wizyta.koszt_rodzaju && barber.wartosc_doswiadczenia">Cena za <b>{{wizyta.nazwa_rodzaju}}</b> u <b>{{barber.imie}}</b>: <b>{{ cena }} zł</b></p>
+</form>
+
+<div id="potwierdz">
+    <button type="button" class="btn btn-light btn-lg" (click)="zarezerwujWizyte()" *ngIf="selectedDate && selectedHour && wybranaWizyta && wybranyBarber">Zarezerwuj</button>
+    <p *ngIf="czyZajetyTermin" id="zajetyTermin">Przepraszamy, wybrany termin u tego barbera niedostępny, proszę wybrać inny termin.</p>
+</div>
+</section>

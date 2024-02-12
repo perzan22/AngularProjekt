@@ -1,0 +1,85 @@
+form
+    margin-right: 100px
+    
+form #termin
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+    height: 100%
+    label
+    margin: 0px
+
+    h2
+        text-align: center
+
+form #rodzaj_wizyty
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+    height: 100%
+
+button
+    color: white
+    background: rgb(95, 61, 16)
+    border:0px
+    margin: 30px
+
+
+#potwierdz
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-self: center
+    height: 100%
+
+section
+    display: flex
+    justify-items: space-between
+    width: 100%
+
+#label-witaj
+    margin-right: 30px
+    text-align: center
+
+#zajetyTermin
+    color: red
+    margin: 30px
+    text-align: center
+    max-width: 150px
+
+@media screen and (max-width: 1024px)
+    button
+        margin: 10px
+    form
+        margin-right: 10px
+    section
+        align-items: center
+    #termin
+        align-self: flex-start
+    #zajetyTermin
+        margin: 10px
+
+@media screen and (max-width: 800px)
+    form
+        margin-right: 0px
+    h2
+        font-size: 16px
+    #label-witaj
+        margin-right: 0px
+        text-align: center
+    
+    button
+        margin: 10px
+        padding: 5px
+        max-height: 40px
+        font-size: 18px
+    section
+        flex-direction: column
+        align-items: center
+    #termin
+        align-self: center
+
+    #zajetyTermin
+        max-width: 800px

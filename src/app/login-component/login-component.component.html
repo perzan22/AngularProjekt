@@ -1,0 +1,23 @@
+<!--Formularz do zalogowania-->
+
+<form (ngSubmit)="login()">
+    <div class="mb-2">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="email@example.com" name="email" [(ngModel)]="userData.email">
+    </div>
+    <div class="mb-2">
+        <label for="haslo" class="form-label">Hasło:</label>
+        <input type="password" class="form-control" id="haslo" placeholder="Hasło" name="haslo" [(ngModel)]="userData.password">
+    </div>
+    <div class="mb-2" id="btn1" *ngIf="!czyBladLogowania; else elseblock2">
+        <button type="submit" class="btn btn-light btn-lg">Zaloguj się</button>
+    </div>
+</form>
+
+<ng-template #elseblock2>
+<div class="mb-2" id="btn2">
+    <button type="submit" class="btn btn-light btn-lg">Zaloguj się</button>
+    <p>Błędne dane logowania! Spróbuj ponownie</p>
+</div>
+</ng-template>
+
